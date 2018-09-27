@@ -4,26 +4,24 @@
 
 using namespace std;
 
-void mergesort(vector<int> &a, int l = 0, int r = 0){
+void mergesort(vector<int> &a, vector<int> &m, int l, int r){
   int n = r - l;
-  if(n==1){
+  if(n == 1){
     return;
   }
   int ll = l;
   int rl = l + n/2;
   int lr = l + n/2;
   int rr = r;
-  mergesort(a, ll, rl);
-  mergesort(a, lr, rr);
+  mergesort(a, m, ll, rl);
+  mergesort(a, m, lr, rr);
 
-  vector<int> m;
-  int i=ll, j=lr;
-  while(i < rl || j < rr){
+  for(int k = 0, i = ll, j = lr; k < (rr-ll) && (i < rl || j < rr); ++k){
     if(j == rr || (i < rl && a[i] <= a[j])){
-      m.push_back(a[i]);
+      m[k] = a[i];
       ++i;
     } else {
-      m.push_back(a[j]);
+      m[k] = a[j];
       ++j;
     }
   }
@@ -40,13 +38,14 @@ int main(){
 
 	int n;
 	cin >> n;
-	vector <int> a(n);
+	vector<int> a(n);
+  vector<int> m(n);
 
 	for (int i = 0; i < n; ++i){
 		cin >> a[i];
 	}
 
-  mergesort(a, 0, a.size());
+  mergesort(a, m, 0, a.size());
 
 	for (int i = 0; i < n; ++i){
 		cout << a[i] << " ";
