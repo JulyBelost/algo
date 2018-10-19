@@ -6,20 +6,20 @@ using namespace std;
 int main(){
     int n;
     cin >> n;
-    vector<int> a = {0};
-    for(int i = 0; i < n; ++i){
-        int t = 0;
+    vector<int> a(n + 1);
+    a[0] = 0;
+    for (int i = 1; i <= n; ++i) {
+        int t;
         cin >> t;
-        a.push_back(i == 0 ? t : a[i] + t);
+        a[i] = a[i - 1] + t;
     }
 
     int res = 0;
 
     for(int i = 0; i < n; ++i){
-        for(int j = i + 1; j < n; ++j){
-            double l = j - i;
-            double s = (a[j] - a[i]) / l;
-            if(s > 100 && l > res){
+        for(int j = i + 1; j <= n; ++j){
+            int l = j - i;
+            if(a[j] - a[i] > 100 * l && l > res){
                 res = l;
             }
         }

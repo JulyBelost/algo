@@ -8,9 +8,9 @@ int main(){
 	int t;
 	cin >> t;
 	for(int i = 0; i<t; ++i){
-	 long long s, a, b, c;
-	 cin >> s >> a >> b >> c;
-     long long res = (s / (a * c)) * (a + b) + (s % (a * c)) / c;
-     cout << res << "\n";
+		long long s, a, b, c;
+		cin >> s >> a >> b >> c;
+		long long res = (s / (a * c)) * (a + b) + (s % (a * c)) / c;
+		cout << res << "\n";
 	}
 }

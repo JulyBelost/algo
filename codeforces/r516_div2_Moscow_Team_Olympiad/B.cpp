@@ -12,9 +12,9 @@ int main(){
         int s = 0;
         while(a != 0){
             s += a & 1;
-            a = a >> 1;
+            a >>= 1;
         }
-        long long res = pow(2, s);
+        long long res = 1 << s;
         cout << res << "\n";
     }
 }

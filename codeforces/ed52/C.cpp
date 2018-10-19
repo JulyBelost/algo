@@ -12,41 +12,31 @@ int main(){
     int l = 200000, h = 0;
     for(int i = 0; i < n; ++i){
         cin >> a[i];
-        if(a[i] > h){
-            h = a[i];
-        }
-        if(a[i] < l){
-            l = a[i];
-        }
+        h = max(h, a[i]);
+        l = min(l, a[i]);
     }
 
     if(n == 1){
         cout << 0 << "\n";
     } else {
         int g = h - l;
-        vector<int> b(g);
+        vector<int> b(g + 1);
         for(int i = 0; i < n; ++i){
             if(a[i] != l){
-                ++b[(a[i] - l) - 1];
+                ++b[(a[i] - l)];
             }
         }
-        for(int i = g - 1; i >= 0; --i){
-            if(i < g -1){
+        for(int i = g; i > 0; --i){
+            if(i < g){
                 b[i] += b[i + 1];
             }
         }
 
         int res = 0;
 
-        for(int i = 0; i < g;){
-            int t = 0;
-            while(i < g && t < k){
-                if(t + b[i] <= k){
-                    t += b[i];
-                    ++i;
-                } else {
-                    break;
-                }
+        for(int i = 1; i <= g;){
+            for (int t = 0; i <= g && t + b[i] <= k; ++i) {
+                t += b[i];
             }
             ++res;
         }

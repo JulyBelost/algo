@@ -14,6 +14,5 @@ int main(){
         res = e / v - (r / v - (l - 1) / v);
 
         cout << res << "\n";
-
     }
 }

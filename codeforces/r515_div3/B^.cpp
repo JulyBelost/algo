@@ -12,12 +12,12 @@ int main(){
     }
     int res = 0;
     for(int i = 0; i < n; ){
-        int ind = -1;
+        bool good = false;
         int j = i, k = i;
         while(j < n && j < (i == 0 ? i + r : i - 1 + 2 * r)){
             if(b[j] == 1){
-                if(ind == -1){
-                    ind = 1;
+                if(!good){
+                    good = true;
                     ++res;
                 }
                 k = j + 1;
@@ -25,7 +25,7 @@ int main(){
             ++j;
         }
         i = k;
-        if(ind == -1){
+        if(!good){
             res = -1;
             break;
         }

@@ -6,7 +6,7 @@ using namespace std;
 int main(){
     int t;
     cin >> t;
-    int l = 200100, r = 200100;
+    int l = 0, r = 0;
     int c[200001]  = {0};
     for(int j = 0; j < t; ++j){
         char p;
