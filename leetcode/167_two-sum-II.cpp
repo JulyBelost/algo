@@ -7,7 +7,7 @@ public:
         for(int i = 0, j = n - 1; i != j;){
             int x = numbers[i] + numbers[j];
             if(x == target){
-                return {i+1, j+1};
+                return {i + 1, j + 1};
             } else if (x < target){
                 ++i;
             } else {

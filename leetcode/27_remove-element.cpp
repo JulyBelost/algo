@@ -18,6 +18,6 @@ public:
                 ++i;
             }
         }
-        return min(i,j) + 1 ;
+        return min(i, j) + 1 ;
     }
 };
