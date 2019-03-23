@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/jewels-and-stones/ 
+// https://leetcode.com/problems/jewels-and-stones/
 
 class Solution {
 public:

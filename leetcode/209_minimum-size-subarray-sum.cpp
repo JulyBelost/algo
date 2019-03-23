@@ -6,27 +6,24 @@ public:
         if(nums.empty()){
             return 0;
         }
-        vector<int> numssums = {0};
-        int t = 0, n = nums.size();
-        for(int i = 0; i < n; ++i){
-            t += nums[i];
-            numssums.push_back(t);
-        }
-        if(numssums[n] < s){
-            return 0;
-        }
 
-        int res = nums.size();
+        int n = nums.size();
+        int sum = 0;
+        int res = n + 1;
 
-        for(int i = 0, j = 0; i <= n && j <= n; ){
-            if(numssums[j] - numssums[i] >= s){
+        for(int i = 0, j = 0; i < n && j <= n; ){
+
+            if(sum >= s){
                 res = min(res, j - i);
+                sum -= nums[i];
                 ++i;
-                j = i;
             } else {
+                if(j != n){
+                    sum += nums[j];
+                }
                 ++j;
             }
         }
-        return res;
+        return res == n + 1 ? 0 : res;
     }
 };
