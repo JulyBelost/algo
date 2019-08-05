@@ -17,12 +17,8 @@ int tanya(int s, int k){
         for(int i = 0; i < a.size(); ++i){
             int t_i;
             int l;
-            if(i != s && col[i] != col[s] && a[i] > a[s]){
-                t_i = tanya(i, k - a[i]);
-                l = abs(s - i);
-                if(t_i + l < t_sk){
-                    t_sk = t_i + l;
-                }
+            if(col[i] != col[s] && a[i] > a[s]){
+                t_sk = min(t_sk, tanya(i, k - a[i]) + abs(s - i));
             }
         }
         t[s][k] = t_sk;
@@ -44,13 +40,7 @@ int main(){
     res = 1000000000;
 
     for(int i = 0; i < a.size(); ++i){
-        int t_i;
-        int l;
-        t_i = tanya(i, k - a[i]);
-        l = abs(s - i);
-        if(t_i + l < res){
-            res = t_i + l;
-        }
+        res = min(res, tanya(i, k - a[i]) + abs(s - i));
     }
 
     cout << (res == 1000000000 ? -1 : res) << "\n";
