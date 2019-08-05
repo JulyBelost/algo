@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/evaluate-reverse-polish-notation/
+// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 // Created by Julia on 2019-08-04.
 
 class Solution {
