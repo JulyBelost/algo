@@ -27,11 +27,11 @@ int main(){
     }
 
     cout << a.size() << "\n";
-    for(set<int>::iterator a_it = a.begin(); a_it != a.end(); a_it++){
-        cout << *a_it + 1 << "\n";
+    for(int x: a){
+        cout << x + 1 << "\n";
     }
     cout << b.size() << "\n";
-    for(set<int>::iterator b_it = b.begin(); b_it != b.end(); b_it++){
-        cout << *b_it + 1 << "\n";
+    for(int y: b){
+        cout << y + 1 << "\n";
     }
 }
