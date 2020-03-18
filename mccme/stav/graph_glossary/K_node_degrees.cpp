@@ -6,7 +6,6 @@ using namespace std;
 int main(){
     int n;
     cin >> n;
-    bool res = false;
     int i, j, t, s;
 
     for(i = 0; i < n; ++i){
