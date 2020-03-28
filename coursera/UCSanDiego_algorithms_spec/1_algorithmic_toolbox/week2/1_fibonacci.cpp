@@ -46,12 +46,12 @@ void test_solution() {
 int main() {
     int n = 0;
     std::cin >> n;
-    double t = clock();
+    // double t = clock();
 
     // std::cout << fibonacci_naive(n) << '\n';
     // test_solution();
     std::cout << fibonacci_fast(n) << '\n';
-    std::cout.setf(std::ios::fixed);
-    std::cout << (clock() - t) / CLOCKS_PER_SEC << '\n';
+    // std::cout.setf(std::ios::fixed);
+    // std::cout << (clock() - t) / CLOCKS_PER_SEC << '\n';
     return 0;
 }
