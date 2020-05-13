@@ -2,6 +2,8 @@
 #include <queue>
 #include <vector>
 
+using namespace std;
+
 struct Request {
     Request(int arrival_time, int process_time):
         arrival_time(arrival_time),
@@ -30,44 +32,56 @@ public:
     {}
 
     Response Process(const Request &request) {
-        // write your code here
+        while(finish_time_.size() > 0 && request.arrival_time >= finish_time_.front()) {
+            finish_time_.pop();
+        }
+
+        if(finish_time_.size() < size_){
+            int t = finish_time_.size() ? max(finish_time_.back(), request.arrival_time) : request.arrival_time;
+
+            finish_time_.push(t + request.process_time);
+
+            return Response(false, t);
+        } else {
+            return Response(true, 0);
+        }
     }
 private:
     int size_;
-    std::queue <int> finish_time_;
+    queue <int> finish_time_;
 };
 
-std::vector <Request> ReadRequests() {
-    std::vector <Request> requests;
+vector <Request> ReadRequests() {
+    vector <Request> requests;
     int count;
-    std::cin >> count;
+    cin >> count;
     for (int i = 0; i < count; ++i) {
         int arrival_time, process_time;
-        std::cin >> arrival_time >> process_time;
+        cin >> arrival_time >> process_time;
         requests.push_back(Request(arrival_time, process_time));
     }
     return requests;
 }
 
-std::vector <Response> ProcessRequests(const std::vector <Request> &requests, Buffer *buffer) {
-    std::vector <Response> responses;
+vector <Response> ProcessRequests(const vector <Request> &requests, Buffer *buffer) {
+    vector <Response> responses;
     for (int i = 0; i < requests.size(); ++i)
         responses.push_back(buffer->Process(requests[i]));
     return responses;
 }
 
-void PrintResponses(const std::vector <Response> &responses) {
+void PrintResponses(const vector <Response> &responses) {
     for (int i = 0; i < responses.size(); ++i)
-        std::cout << (responses[i].dropped ? -1 : responses[i].start_time) << std::endl;
+        cout << (responses[i].dropped ? -1 : responses[i].start_time) << endl;
 }
 
 int main() {
     int size;
-    std::cin >> size;
-    std::vector <Request> requests = ReadRequests();
+    cin >> size;
+    vector <Request> requests = ReadRequests();
 
     Buffer buffer(size);
-    std::vector <Response> responses = ProcessRequests(requests, &buffer);
+    vector <Response> responses = ProcessRequests(requests, &buffer);
 
     PrintResponses(responses);
     return 0;
