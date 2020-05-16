@@ -11,7 +11,7 @@ using std::make_pair;
 
 class HeapBuilder {
  private:
-     int capasity_;
+     int capacity_;
      vector<int> data_;
      vector< pair<int, int> > swaps_;
 
@@ -31,19 +31,19 @@ class HeapBuilder {
         }
     }
 
-    void CountCapasity() {
+    void CountCapacity() {
         int d = data_.size(), c = 1;
-        while(d / 2 > 0) {
+        while(d > 1) {
             ++c;
-            d /= 2;
+            d >>= 1;
         }
-        capasity_ = 1 << c;
+        capacity_ = 1 << c;
     }
 
     void GenerateSwaps() {
         swaps_.clear();
 
-        int n = (capasity_ - 1) / 2;
+        int n = (capacity_ - 1) / 2;
 
         for (int i = n; i >= 0; --i){
             SiftDown(i);
@@ -55,7 +55,7 @@ class HeapBuilder {
             int ind = i;
             int ch = (i + 1) * 2;
 
-            if (ch - 1 < data_.size() && data_[i] > data_[ch - 1]) {
+            if (ch - 1 < data_.size() && data_[ind] > data_[ch - 1]) {
                 ind  = ch - 1;
             }
             if (ch < data_.size() && data_[ind] > data_[ch]) {
@@ -71,7 +71,7 @@ class HeapBuilder {
  public:
     void Solve() {
         ReadData();
-        CountCapasity();
+        CountCapacity();
         GenerateSwaps();
         WriteResponse();
     }

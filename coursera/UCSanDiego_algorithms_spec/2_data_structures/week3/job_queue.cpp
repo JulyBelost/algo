@@ -73,9 +73,16 @@ class JobQueue {
 
     void SiftLastUp() {
         int k = num_workers_ - 1;
-        while (next_thread[(k - 1) / 2] > next_thread[k]) {
-          swap(next_thread[(k - 1) / 2], next_thread[k]);
-          k = (k - 1) / 2;
+
+        while (k > 0) {
+            int p = (k - 1) / 2;
+
+            if(next_thread[p] <= next_thread[k]) {
+                break;
+            }
+
+            swap(next_thread[p], next_thread[k]);
+            k = p;
         }
     }
 
