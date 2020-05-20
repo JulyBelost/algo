@@ -16,39 +16,33 @@ struct Node {
   Node(long long key_, int left_, int right_) : key(key_), left(left_), right(right_) {}
 };
 
-void in_order_process(const vector<Node>& tree, vector<long long> & res, int i) {
-    int delta = 0;
+void in_order_process(const vector<Node>& tree, long long & prev, int i) {
+    long long inf = INT32_MAX + (long long)1;
 
     if(tree[i].left != -1) {
         if(tree[tree[i].left].key == tree[i].key){
-            ++delta;
+            prev = inf;
         }
-        in_order_process(tree, res, tree[i].left);
+        in_order_process(tree, prev, tree[i].left);
     }
 
-    res.push_back(tree[i].key - delta);
+    prev = prev <= tree[i].key ? tree[i].key: inf;
 
 
     if(tree[i].right != -1) {
-        in_order_process(tree, res, tree[i].right);
+        in_order_process(tree, prev, tree[i].right);
     }
 }
 
 bool IsBinarySearchTree(const vector<Node>& tree) {
-    if(tree.empty()) {
+    if(tree.size() <= 1) {
         return true;
     }
 
-    vector<long long> result;
-    in_order_process(tree, result, 0);
+    long long prev;
+    in_order_process(tree, prev = INT32_MIN, 0);
 
-    for (int i = 0; i < result.size() - 1; ++i) {
-        if(result[i] > result[i + 1]) {
-            return false;
-        }
-    }
-
-    return true;
+    return prev <= INT32_MAX;
 }
 
 int main() {
