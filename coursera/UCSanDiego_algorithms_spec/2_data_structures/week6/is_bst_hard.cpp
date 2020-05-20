@@ -20,14 +20,11 @@ void in_order_process(const vector<Node>& tree, long long & prev, int i) {
     long long inf = INT32_MAX + (long long)1;
 
     if(tree[i].left != -1) {
-        if(tree[tree[i].left].key == tree[i].key){
-            prev = inf;
-        }
         in_order_process(tree, prev, tree[i].left);
     }
 
-    prev = prev <= tree[i].key ? tree[i].key: inf;
-
+    bool cond = (tree[i].left != -1 && tree[tree[i].left].key == tree[i].key) || prev > tree[i].key;
+    prev = !cond ? tree[i].key: inf;
 
     if(tree[i].right != -1) {
         in_order_process(tree, prev, tree[i].right);
