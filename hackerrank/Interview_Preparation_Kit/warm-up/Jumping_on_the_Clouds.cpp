@@ -1,10 +1,8 @@
+//https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem
 #include <vector>
 #include <iostream>
-#include <unordered_set>
 
 using namespace std;
-
-vector<string> split_string(string);
 
 // Complete the jumpingOnClouds function below.
 int jumpingOnClouds(vector<int> c) {
